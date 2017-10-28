@@ -1,0 +1,5 @@
+(define (proc-cons a b)
+  (lambda (choice)
+    (if (= choice 1)
+	a
+	b)))

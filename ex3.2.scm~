@@ -1,0 +1,13 @@
+(define (make-monitored f)
+  (lambda (command)
+    (let ((counter 0))
+      (cond ((eq? command 'how-many-calls?) counter)
+	    ((eq? command 'reset-count) (set! counter 0))
+	    (else
+	     (begin 
+	       (f command)
+	       (set! counter (+ counter 1))))))))
+
+(define mt-sqrt (make-monitored sqrt))
+
+(mt-sqrt 'how-many-calls?)

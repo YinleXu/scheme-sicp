@@ -1,0 +1,7 @@
+(define (iterative-improve good-enough? improve)
+  ((lambda (x) (x x))
+   (lambda (self-rec)
+     (lambda (guess)
+       (if (good-enough? guess)
+	   guess
+	   ((self-rec self-rec) (improve guess)))))))

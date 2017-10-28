@@ -1,0 +1,5 @@
+(define (square-list ls)
+  (if (null? ls)
+      '()
+      (cons (* (car ls) (car ls))
+	    (square-list (cdr ls)))))

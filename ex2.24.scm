@@ -1,0 +1,77 @@
+(list 1 (list 2 (list 3 4)))
+
+;2.25
+(cadr (caddr (list 1 3 (list 5 7) 9)))
+
+(caar (list (list 7)))
+
+(define a (list 1 (list 2 (list 3 (list 4 (list 5 (list 6 7)))))))
+
+(cadadr (cadadr (cadadr a)))
+
+;2.26
+(define x (list 1 2 3))
+(define y (list 4 5 6))
+
+(append x y)
+(cons x y)
+(list x y)
+
+;2.27
+(append '() (list 1 2 3))
+
+; does not work properly because the use of append
+; append won't reserve the tree structure as it merges
+; two input lists rather than forming a tree
+
+(define (deep-reverse-r tree)
+  (cond ((null? tree) '())
+	((not (pair? tree)) (list tree))
+	(else
+	 (append (deep-reverse-r (cdr tree))
+		 (deep-reverse-r (car tree))))))
+
+
+; does not work properly because the use of append
+; append won't reserve the tree structure as it merges
+; two input lists rather than forming a tree
+
+(define (deep-reverse-r tree)
+  (cond ((null? tree) '())
+	((not (pair? tree)) (list tree))
+	(else
+	 (append (deep-reverse-r (cdr tree))
+		 (deep-reverse-r (car tree))))))
+
+		 
+(define x (list (list 1 2) (list 3 4)))
+
+(deep-reverse-r x)
+
+; instead of using append in recursive process
+; use cons in iterative process reserves the tree
+; structure
+(define (deep-reverse-i tree-in)
+  (define (iter tree result)
+    (cond ((null? tree) result)
+	  ((not (pair? tree)) tree)
+	  (else
+	   (iter (cdr tree) (cons (iter (car tree) '())
+				  result)))))
+  (iter tree-in '()))
+
+(deep-reverse-i (list 1 2 3 3 5))
+
+(deep-reverse-i x) 
+
+(deep-reverse-i (list 1 x 2 x 3))
+
+(deep-reverse-r (list 1 2 3 3 5))
+
+(deep-reverse-r x) 
+
+(deep-reverse-r (list 1 x 2 x 3))
+
+(pair? (list (list 1 2 3)))
+
+(cons '() (list 1 2 3 4))

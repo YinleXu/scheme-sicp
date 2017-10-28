@@ -1,0 +1,19 @@
+(define (make-account balance password)
+  (define (withdraw amount)
+    (if (<= amount balance)
+	(begin
+	  (set! balance (- balance amount))
+	  balance)
+	"Insufficient funds"))
+  
+  
+  (lambda (pswd-in m)
+    (if (eq? pswd-in password)
+	(cond ((eq? m 'withdraw) withdraw)
+	      (else
+	       (error "unknown request -- MAKE-ACCOUNT" m)))
+	(lambda (dummy) "incorrect password!"))))
+
+(define A1 (make-account 100 'hellow))
+
+((A1 'hellow 'withdraw) 50)

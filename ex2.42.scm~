@@ -1,0 +1,6 @@
+(= '(1 2) '(1 2))
+
+
+(define (queens board-size)
+  (define (queen-cols k)
+    (

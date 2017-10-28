@@ -1,0 +1,10 @@
+(define (subsets s)
+  (if (null? s)
+      '()
+      (let ((ss (subsets (cdr s))))
+	(append ss
+		(map (lambda (x) (append ss x))
+		     ss)))))
+
+(define set1 '(1 2 3))
+

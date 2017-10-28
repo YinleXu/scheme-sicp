@@ -1,0 +1,3 @@
+(define (make-accumulator base)
+  (lambda (amount)
+    (set! base (+ base amount))))

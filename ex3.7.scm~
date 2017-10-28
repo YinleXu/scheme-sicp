@@ -1,0 +1,37 @@
+((define (make-account balance password)
+  (define (withdraw amount)
+    (if (<= amount balance)
+	(begin
+	  (set! balance (- balance amount))
+	  balance)
+	"Insufficient funds"))
+  
+  (define (deposit amount)
+    (set! balance (+ balance amount))
+    balance)
+
+  (define (dispatch m)
+    (cond ((eq? m 'withdraw) withdraw)
+	  ((eq? m 'deposit) deposit)
+	  (else
+	   (error "unknown request -- MAKE-ACCOUNT" m))))
+  
+  (password-protect password dispatch))
+
+(define (password-protect password object)
+  (define (call-the-cops)
+    "cops en route!!")
+
+  (let ((fail-time 0))
+    (lambda (pw-in msg-in)
+      (if (eq? password pw-in)
+	  (object msg-in)
+	  (if (= fail-time 6)
+	      (call-the-cops)
+	      (begin
+		(set! fail-time (+ fail-time 1))
+		("wrong password!")))))))
+
+(define (make-account 100 'apassword) A)
+
+((A 'apassword 'withdraw) 30)

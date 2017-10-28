@@ -1,0 +1,4 @@
+(define (unique-triples-dumb n)
+  (flatmap (lambda (i) (flatmap (lambda (j) (map (lambda (k) (list j k))
+						 (enumerate-interval 1 (- j 1)))
+					

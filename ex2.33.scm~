@@ -1,0 +1,4 @@
+;(define (accumulate op initial sequence)
+; ())
+
+accumulate

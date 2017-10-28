@@ -1,0 +1,9 @@
+(expt 2 10)
+(remainder 9 2)
+
+(define (number-of-factor product factor)
+  (define (iter-proc prod fac n)
+    
+
+
+(define 

@@ -1,0 +1,7 @@
+(define (reverse-right sequence)
+  (fold-right (lambda (x y)
+		(append y x))
+	      '()
+	      sequence))
+
+(reverse-right '(1 2 3 4 5))

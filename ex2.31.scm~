@@ -1,0 +1,9 @@
+(define (tree-map func tree)
+  (map (lambda (t)
+	 (if (pair? t)
+	     (tree-map func t)
+	     (func t))))
+  tree)
+
+(define (square-tree tree) (tree-map square tree))
+
